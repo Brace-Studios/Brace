@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.30'
+}
+
+group maven_group
+version project_version
+
+if (build_number != "undefined") {
+    version += "+build.${build_number}"
+}
+
+repositories {
+    maven {
+        url "https://libraries.minecraft.net"
+    }
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.google.code.gson:gson:2.8.9'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task docJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"   : project.name,
+                "Specification-Vendor"  : "Gugle",
+                "Specification-Version" : "1",
+                "Implementation-Title"  : project.name,
+                "Implementation-Version": project_version,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            version project.version
+            artifactId project.archivesBaseName
+            from components.java
+            artifact sourcesJar
+            artifact docJar
+        }
+    }
+    def ENV = System.getenv()
+    if (ENV.MAVEN_URL) {
+        repositories.maven {
+            url ENV.MAVEN_URL
+            credentials {
+                username ENV.MAVEN_USERNAME
+                password ENV.MAVEN_PASSWORD
+            }
+        }
+    }
+}

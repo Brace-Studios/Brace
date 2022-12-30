@@ -1,0 +1,5 @@
+{
+  "cbapi.plugin.load.warn.not_plugin": "文件 %s 不是一个ChatBot插件",
+  "cbapi.plugin.load.warn.dont_has_main_class": "没有找到插件 %s 的主类",
+  "cbapi.plugin.load.warn.has_same_id_plugin": "插件 %s 存在与之ID相同的插件 %s"
+}

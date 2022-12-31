@@ -20,7 +20,7 @@ public interface CommandSource {
         }
     };
 
-    void sendMessage(Component component);
+    void sendMessage(Component msg);
 
     boolean acceptsSuccess();
 

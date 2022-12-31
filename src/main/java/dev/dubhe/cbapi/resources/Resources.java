@@ -1,8 +1,11 @@
 package dev.dubhe.cbapi.resources;
 
 import com.google.gson.Gson;
+import com.mojang.logging.LogUtils;
 import dev.dubhe.cbapi.ChatServer;
 import dev.dubhe.cbapi.util.Pair;
+import dev.dubhe.cbapi.util.chat.TranslatableComponent;
+import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +24,10 @@ public abstract class Resources {
     public static final Map<String, ResourcesIndexes> ASSETS = new ConcurrentHashMap<>();
     public static final Path RESOURCES_PACK = ChatServer.ROOT.resolve("resources_pack");
     private static final Gson GSON = new Gson();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public static void load() {
+        LOGGER.info(new TranslatableComponent("资源包加载中...").getString());
         File resPack = RESOURCES_PACK.toFile();
         if (resPack.isDirectory()) resPack.mkdir();
         File[] resPacks = resPack.listFiles((file) -> file.getName().endsWith(".zip"));

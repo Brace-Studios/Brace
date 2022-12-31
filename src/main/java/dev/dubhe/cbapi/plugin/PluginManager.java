@@ -5,7 +5,7 @@ import com.google.gson.JsonSyntaxException;
 import dev.dubhe.cbapi.ChatServer;
 import dev.dubhe.cbapi.resources.Resources;
 import dev.dubhe.cbapi.util.Pair;
-import dev.dubhe.cbapi.util.chat.TranslationComponent;
+import dev.dubhe.cbapi.util.chat.TranslatableComponent;
 import org.slf4j.Logger;
 
 import javax.annotation.Nullable;
@@ -29,7 +29,7 @@ public class PluginManager {
     public static final Map<String, Pair<Plugin.PluginMeta, File>> PLUGIN_FILES = new ConcurrentHashMap<>();
     public static final Map<String, Plugin> JAVA_PLUGINS = new ConcurrentHashMap<>();
     public static final Gson GSON = new Gson();
-    public final Logger logger = ChatServer.bot.getLogger();
+    public final Logger logger = ChatServer.getBot().getLogger();
 
     boolean load() {
         File plugins = PluginManager.PLUGINS_PATH.toFile();
@@ -71,7 +71,7 @@ public class PluginManager {
             Plugin.PluginMeta meta = GSON.fromJson(reader, Plugin.PluginMeta.class);
             if (PLUGIN_FILES.containsKey(meta.id)) {
                 logger.warn(
-                        new TranslationComponent(
+                        new TranslatableComponent(
                                 "cbapi.plugin.load.warn.has_same_id_plugin",
                                 file.getName(),
                                 PLUGIN_FILES.get(meta.id).right().getName()
@@ -84,7 +84,7 @@ public class PluginManager {
             e.printStackTrace();
             return null;
         } catch (JsonSyntaxException e) {
-            logger.warn(new TranslationComponent("cbapi.plugin.load.warn.meta_syntax_error", file.getName()).getString());
+            logger.warn(new TranslatableComponent("cbapi.plugin.load.warn.meta_syntax_error", file.getName()).getString());
             return null;
         }
     }
@@ -110,7 +110,7 @@ public class PluginManager {
                         Resources.load(zipFile);
                     }
                 } else {
-                    logger.warn(new TranslationComponent("插件 %s 的主类没有继承 dev.dubhe.cbapi.plugin.JavaPlugin", file.getName()).getString());
+                    logger.warn(new TranslatableComponent("插件 %s 的主类没有继承 dev.dubhe.cbapi.plugin.JavaPlugin", file.getName()).getString());
                 }
             }
         } catch (InvocationTargetException | NoSuchMethodException | ClassNotFoundException | IllegalAccessException |

@@ -3,7 +3,7 @@ package dev.dubhe.cbapi.util.chat;
 
 import javax.annotation.Nonnull;
 
-public class TextComponent implements Component {
+public class TextComponent extends BaseComponent {
     private final String text;
 
     public TextComponent(String text) {

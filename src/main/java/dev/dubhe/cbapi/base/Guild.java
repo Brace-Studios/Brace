@@ -4,7 +4,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public interface Server {
+public interface Guild {
     // 获取频道列表
     @Nonnull
     List<Channel> getChannels();
@@ -15,7 +15,7 @@ public interface Server {
 
     // 获取服务器ID
     @Nonnull
-    Long getServerID();
+    Long getGuildID();
 
     // 通过频道ID获取频道
     @Nullable

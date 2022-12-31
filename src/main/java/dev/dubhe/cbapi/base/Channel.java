@@ -15,7 +15,7 @@ public interface Channel {
 
     // 获取服务器
     @Nonnull
-    Server getServer();
+    Guild getGuild();
 
     // 通过用户ID获取用户
     @Nullable

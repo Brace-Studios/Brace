@@ -1,6 +1,6 @@
 package dev.dubhe.cbapi;
 
-import dev.dubhe.cbapi.base.Server;
+import dev.dubhe.cbapi.base.Guild;
 import dev.dubhe.cbapi.base.User;
 import org.slf4j.Logger;
 
@@ -17,7 +17,7 @@ public interface ChatBot {
     Logger getLogger();
 
     @Nonnull
-    List<Server> getServers();
+    List<Guild> getGuilds();
 
     @Nonnull
     List<User> getFriends();
@@ -26,7 +26,7 @@ public interface ChatBot {
     User getUser(Long id);
 
     @Nullable
-    Server getServer(Long id);
+    Guild getGuild(Long id);
 
     @Nonnull
     Config getConfig();

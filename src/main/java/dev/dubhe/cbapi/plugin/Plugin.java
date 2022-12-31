@@ -1,20 +1,19 @@
 package dev.dubhe.cbapi.plugin;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class JavaPlugin {
-    protected JavaPluginInfo pluginInfo;
+public abstract class Plugin {
+    protected PluginMeta pluginInfo;
 
     public abstract void onInitialization();
 
     public abstract void onUninstall();
 
-    protected void load(JavaPluginInfo pluginInfo) {
+    protected void load(PluginMeta pluginInfo) {
         this.pluginInfo = pluginInfo;
     }
 
-    public static class JavaPluginInfo {
+    public static class PluginMeta {
         public String id; // 插件ID
         public String name; // 插件名称
         public String version; // 插件版本
@@ -24,6 +23,5 @@ public abstract class JavaPlugin {
         public String website = ""; // 插件网站
         public String issue = ""; // 插件反馈途径
         public String source = ""; // 插件开源地址
-        public List<String> libs = new ArrayList<>();
     }
 }

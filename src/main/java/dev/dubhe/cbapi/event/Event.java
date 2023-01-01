@@ -18,7 +18,7 @@ public class Event<T> {
     }
 
     @FunctionalInterface
-    interface Inter<T> {
+    public interface Inter<T> {
         void inter(T context);
     }
 }

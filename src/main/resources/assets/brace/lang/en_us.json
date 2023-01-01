@@ -1,0 +1,26 @@
+{
+  "brace.bot.start": "",
+  "brace.bot.stop": "",
+  "brace.bot.started": "",
+  "brace.bot.stoped": "",
+  "brace.filetype.image": "[Image]",
+  "brace.filetype.file": "[File]",
+
+  "brace.plugin.plugin_manager.load": "",
+  "brace.plugin.plugins.loading": "",
+  "brace.plugin.loading": "",
+  "brace.plugin.unloading": "",
+  "brace.plugin.load.warn.not_plugin": "",
+  "brace.plugin.load.warn.meta_syntax": "",
+  "brace.plugin.load.warn.main_class": "",
+  "brace.plugin.load.warn.dont_has_main_class": "",
+  "brace.plugin.load.warn.has_same_id_plugin": "",
+  "brace.plugin.config.not_has_default": "",
+
+  "brace.resources.load": "",
+  "brace.resources.packs.loading": "",
+
+  "brace.commands.failed": "An unexpected error occurred trying to execute that command",
+  "brace.commands.context.here": "<--[HERE]",
+  "brace.commands.loading": ""
+}

@@ -1,13 +1,8 @@
-name: Continuous Integration
+name: Releases
 
 on:
-  push:
-    branches: [ 'master' ]
-    paths:
-      - src/**
-      - build.gradle
-      - gradle.properties
-      - settings.gradle
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -20,8 +15,6 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Set build number
-        run: sed -i "s/undefined/$GITHUB_RUN_NUMBER/g" gradle.properties
       - name: Grant execute permission
         run: chmod +x gradlew
       - name: Build with Gradle

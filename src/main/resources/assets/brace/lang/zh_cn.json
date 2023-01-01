@@ -1,0 +1,26 @@
+{
+  "brace.bot.start": "白泽机器人启动中...",
+  "brace.bot.stop": "白泽机器人关闭中...",
+  "brace.bot.started": "白泽机器人已启动",
+  "brace.bot.stoped": "白泽机器人已关闭",
+  "brace.filetype.image": "[图片]",
+  "brace.filetype.file": "[文件]",
+
+  "brace.plugin.plugin_manager.load": "插件加载器已启动",
+  "brace.plugin.plugins.loading": "插件加载中...",
+  "brace.plugin.loading": "插件 %s 加载中...",
+  "brace.plugin.unloading": "插件 %s 卸载中...",
+  "brace.plugin.load.warn.not_plugin": "文件 %s 不是一个ChatBot插件",
+  "brace.plugin.load.warn.meta_syntax": "文件 %s 的元数据加载失败",
+  "brace.plugin.load.warn.main_class": "插件 %s 的主类没有继承 dev.dubhe.brace.plugins.Plugin",
+  "brace.plugin.load.warn.dont_has_main_class": "没有找到插件 %s 的主类",
+  "brace.plugin.load.warn.has_same_id_plugin": "插件 %s 存在与之ID相同的插件",
+  "brace.plugin.config.not_has_default": "插件 %s 没有默认配置文件",
+
+  "brace.resources.load": "资源包加载器已启动",
+  "brace.resources.packs.loading": "资源包加载中...",
+
+  "brace.commands.failed": "尝试执行该命令时发生意外错误",
+  "brace.commands.context.here": "<--[此处]",
+  "brace.commands.loading": "命令加载中..."
+}

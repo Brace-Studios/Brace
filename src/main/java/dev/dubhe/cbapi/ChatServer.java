@@ -16,10 +16,12 @@ public abstract class ChatServer {
 
     public static void run(@Nonnull ChatBot bot) {
         ChatServer.bot = bot;
-        bot.onStart();
-        ChatServer.commands = new Commands();
         Resources.load();
         ChatServer.pluginManager = new PluginManager();
+        ChatServer.commands = new Commands();
+        ChatServer.pluginManager.load();
+        ChatServer.pluginManager.onInitialization();
+        bot.onStart();
     }
 
     public static Commands getCommands() {

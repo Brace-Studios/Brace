@@ -29,9 +29,14 @@ public class PluginManager {
     public static final Map<String, Pair<Plugin.PluginMeta, File>> PLUGIN_FILES = new ConcurrentHashMap<>();
     public static final Map<String, Plugin> JAVA_PLUGINS = new ConcurrentHashMap<>();
     public static final Gson GSON = new Gson();
-    public final Logger logger = ChatServer.getBot().getLogger();
+    public static final Logger LOGGER = ChatServer.getBot().getLogger();
 
-    boolean load() {
+    public PluginManager() {
+        LOGGER.info(new TranslatableComponent("插件加载器已启动").getString());
+    }
+
+    public boolean load() {
+        LOGGER.info(new TranslatableComponent("插件加载中...").getString());
         File plugins = PluginManager.PLUGINS_PATH.toFile();
         if (!plugins.isDirectory()) {
             if (!plugins.mkdirs()) return false;
@@ -44,7 +49,7 @@ public class PluginManager {
         return true;
     }
 
-    void load(File file) {
+    private void load(File file) {
         if ((!file.isFile()) || (!file.getName().endsWith(".jar"))) return;
         try (JarFile jarFile = new JarFile(file)) {
             for (Iterator<JarEntry> it = jarFile.entries().asIterator(); it.hasNext(); ) {
@@ -70,7 +75,7 @@ public class PluginManager {
         ) {
             Plugin.PluginMeta meta = GSON.fromJson(reader, Plugin.PluginMeta.class);
             if (PLUGIN_FILES.containsKey(meta.id)) {
-                logger.warn(
+                LOGGER.warn(
                         new TranslatableComponent(
                                 "cbapi.plugin.load.warn.has_same_id_plugin",
                                 file.getName(),
@@ -84,20 +89,21 @@ public class PluginManager {
             e.printStackTrace();
             return null;
         } catch (JsonSyntaxException e) {
-            logger.warn(new TranslatableComponent("cbapi.plugin.load.warn.meta_syntax_error", file.getName()).getString());
+            LOGGER.warn(new TranslatableComponent("cbapi.plugin.load.warn.meta_syntax_error", file.getName()).getString());
             return null;
         }
     }
 
-    void loadPluginJar() {
-        URL[] urls = (URL[]) PLUGIN_FILES.values().stream().map(pair -> {
+    private void loadPluginJar() {
+        List<URL> urlList = PLUGIN_FILES.values().stream().map(pair -> {
             try {
                 return pair.right().toURI().toURL();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
                 return null;
             }
-        }).toArray();
+        }).toList();
+        URL[] urls = urlList.toArray(new URL[0]);
         try (URLClassLoader classLoader = new URLClassLoader(urls, ClassLoader.getSystemClassLoader())) {
             for (Pair<Plugin.PluginMeta, File> pair : PLUGIN_FILES.values()) {
                 Plugin.PluginMeta meta = pair.left();
@@ -110,12 +116,26 @@ public class PluginManager {
                         Resources.load(zipFile);
                     }
                 } else {
-                    logger.warn(new TranslatableComponent("插件 %s 的主类没有继承 dev.dubhe.cbapi.plugin.JavaPlugin", file.getName()).getString());
+                    LOGGER.warn(new TranslatableComponent("插件 %s 的主类没有继承 dev.dubhe.cbapi.plugin.JavaPlugin", file.getName()).getString());
                 }
             }
         } catch (InvocationTargetException | NoSuchMethodException | ClassNotFoundException | IllegalAccessException |
                  IOException | InstantiationException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void onInitialization() {
+        for (Map.Entry<String, Plugin> entry : JAVA_PLUGINS.entrySet()) {
+            LOGGER.info(new TranslatableComponent("加载插件 %s 中...", entry.getKey()).getString());
+            entry.getValue().onInitialization();
+        }
+    }
+
+    public void onUninstall() {
+        for (Map.Entry<String, Plugin> entry : JAVA_PLUGINS.entrySet()) {
+            LOGGER.info(new TranslatableComponent("卸载插件 %s 中...", entry.getKey()).getString());
+            entry.getValue().onUninstall();
         }
     }
 }

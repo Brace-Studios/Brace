@@ -89,16 +89,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">说明</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="Channel.html" title="dev.dubhe.brace.base中的接口">Channel</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#getChannel(java.lang.Long)" class="member-name-link">getChannel</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="java.lang中的类或接口" class="external-link">Long</a>&nbsp;id)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">
+<div class="block">通过频道ID获取频道</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="java.util中的类或接口" class="external-link">List</a>&lt;<a href="Channel.html" title="dev.dubhe.brace.base中的接口">Channel</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getChannels()" class="member-name-link">getChannels</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">获取频道列表</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="java.lang中的类或接口" class="external-link">Long</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getGuildID()" class="member-name-link">getGuildID</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">获取Guild ID</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="java.util中的类或接口" class="external-link">List</a>&lt;<a href="User.html" title="dev.dubhe.brace.base中的接口">User</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getUsers()" class="member-name-link">getUsers</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">获取用户列表</div>
+</div>
 </div>
 </div>
 </div>
@@ -118,6 +126,11 @@ loadScripts(document, 'script');</script>
 <h3>getChannels</h3>
 <div class="member-signature"><span class="annotations">@Nonnull
 </span><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="java.util中的类或接口" class="external-link">List</a>&lt;<a href="Channel.html" title="dev.dubhe.brace.base中的接口">Channel</a>&gt;</span>&nbsp;<span class="element-name">getChannels</span>()</div>
+<div class="block">获取频道列表</div>
+<dl class="notes">
+<dt>返回:</dt>
+<dd>当前Guild的频道列表</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -125,6 +138,11 @@ loadScripts(document, 'script');</script>
 <h3>getUsers</h3>
 <div class="member-signature"><span class="annotations">@Nonnull
 </span><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="java.util中的类或接口" class="external-link">List</a>&lt;<a href="User.html" title="dev.dubhe.brace.base中的接口">User</a>&gt;</span>&nbsp;<span class="element-name">getUsers</span>()</div>
+<div class="block">获取用户列表</div>
+<dl class="notes">
+<dt>返回:</dt>
+<dd>当前Guild的用户列表</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -132,6 +150,11 @@ loadScripts(document, 'script');</script>
 <h3>getGuildID</h3>
 <div class="member-signature"><span class="annotations">@Nonnull
 </span><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="java.lang中的类或接口" class="external-link">Long</a></span>&nbsp;<span class="element-name">getGuildID</span>()</div>
+<div class="block">获取Guild ID</div>
+<dl class="notes">
+<dt>返回:</dt>
+<dd>当前Guild的ID</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -140,6 +163,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@Nullable
 </span><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="Channel.html" title="dev.dubhe.brace.base中的接口">Channel</a></span>&nbsp;<span class="element-name">getChannel</span><wbr><span class="parameters">(@Nonnull
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="java.lang中的类或接口" class="external-link">Long</a>&nbsp;id)</span></div>
+<div class="block">通过频道ID获取频道</div>
+<dl class="notes">
+<dt>参数:</dt>
+<dd><code>id</code> - 频道ID</dd>
+<dt>返回:</dt>
+<dd>频道Channel实例，为null代表频道不存在</dd>
+</dl>
 </section>
 </li>
 </ul>

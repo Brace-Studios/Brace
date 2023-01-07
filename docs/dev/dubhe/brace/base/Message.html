@@ -89,19 +89,29 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">说明</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="TextChannel.html" title="dev.dubhe.brace.base中的接口">TextChannel</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getChannel()" class="member-name-link">getChannel</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">获取消息所处的频道</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="../utils/chat/Component.html" title="dev.dubhe.brace.utils.chat中的接口">Component</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMsg()" class="member-name-link">getMsg</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">获取消息内容</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="User.html" title="dev.dubhe.brace.base中的接口">User</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSender()" class="member-name-link">getSender</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">获取消息发送者</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#reply(dev.dubhe.brace.utils.chat.Component)" class="member-name-link">reply</a><wbr>(<a href="../utils/chat/Component.html" title="dev.dubhe.brace.utils.chat中的接口">Component</a>&nbsp;msg)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">回复消息</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#reply(java.lang.String)" class="member-name-link">reply</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="java.lang中的类或接口" class="external-link">String</a>&nbsp;msg)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">回复消息</div>
+</div>
 </div>
 </div>
 </div>
@@ -121,6 +131,11 @@ loadScripts(document, 'script');</script>
 <h3>getMsg</h3>
 <div class="member-signature"><span class="annotations">@Nonnull
 </span><span class="return-type"><a href="../utils/chat/Component.html" title="dev.dubhe.brace.utils.chat中的接口">Component</a></span>&nbsp;<span class="element-name">getMsg</span>()</div>
+<div class="block">获取消息内容</div>
+<dl class="notes">
+<dt>返回:</dt>
+<dd>消息内容</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -128,6 +143,11 @@ loadScripts(document, 'script');</script>
 <h3>getChannel</h3>
 <div class="member-signature"><span class="annotations">@Nonnull
 </span><span class="return-type"><a href="TextChannel.html" title="dev.dubhe.brace.base中的接口">TextChannel</a></span>&nbsp;<span class="element-name">getChannel</span>()</div>
+<div class="block">获取消息所处的频道</div>
+<dl class="notes">
+<dt>返回:</dt>
+<dd>消息所处的频道</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -135,6 +155,11 @@ loadScripts(document, 'script');</script>
 <h3>getSender</h3>
 <div class="member-signature"><span class="annotations">@Nonnull
 </span><span class="return-type"><a href="User.html" title="dev.dubhe.brace.base中的接口">User</a></span>&nbsp;<span class="element-name">getSender</span>()</div>
+<div class="block">获取消息发送者</div>
+<dl class="notes">
+<dt>返回:</dt>
+<dd>消息发送者</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -142,6 +167,11 @@ loadScripts(document, 'script');</script>
 <h3>reply</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">reply</span><wbr><span class="parameters">(@Nonnull
  <a href="../utils/chat/Component.html" title="dev.dubhe.brace.utils.chat中的接口">Component</a>&nbsp;msg)</span></div>
+<div class="block">回复消息</div>
+<dl class="notes">
+<dt>参数:</dt>
+<dd><code>msg</code> - 要回复的消息</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -149,6 +179,11 @@ loadScripts(document, 'script');</script>
 <h3>reply</h3>
 <div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">reply</span><wbr><span class="parameters">(@Nonnull
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="java.lang中的类或接口" class="external-link">String</a>&nbsp;msg)</span></div>
+<div class="block">回复消息</div>
+<dl class="notes">
+<dt>参数:</dt>
+<dd><code>msg</code> - 要回复的消息</dd>
+</dl>
 </section>
 </li>
 </ul>

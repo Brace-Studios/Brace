@@ -155,16 +155,22 @@ implements <a href="commands/CommandSource.html" title="dev.dubhe.brace.commands
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="base/TextChannel.html" title="dev.dubhe.brace.base中的接口">TextChannel</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPrivateChannel()" class="member-name-link">getPrivateChannel</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">获取私聊文字频道</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="java.lang中的类或接口" class="external-link">Long</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getUserID()" class="member-name-link">getUserID</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">获取用户ID</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMessage(dev.dubhe.brace.utils.chat.Component)" class="member-name-link">sendMessage</a><wbr>(<a href="utils/chat/Component.html" title="dev.dubhe.brace.utils.chat中的接口">Component</a>&nbsp;msg)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">发送消息</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shouldInformAdmins()" class="member-name-link">shouldInformAdmins</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -239,9 +245,13 @@ implements <a href="commands/CommandSource.html" title="dev.dubhe.brace.commands
 <h3>getUserID</h3>
 <div class="member-signature"><span class="annotations">@NotNull
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Long.html" title="java.lang中的类或接口" class="external-link">Long</a></span>&nbsp;<span class="element-name">getUserID</span>()</div>
+<div class="block"><span class="descfrm-type-label">从接口复制的说明:&nbsp;<code><a href="base/User.html#getUserID()">User</a></code></span></div>
+<div class="block">获取用户ID</div>
 <dl class="notes">
 <dt>指定者:</dt>
 <dd><code><a href="base/User.html#getUserID()">getUserID</a></code>&nbsp;在接口中&nbsp;<code><a href="base/User.html" title="dev.dubhe.brace.base中的接口">User</a></code></dd>
+<dt>返回:</dt>
+<dd>用户ID</dd>
 </dl>
 </section>
 </li>
@@ -250,9 +260,13 @@ implements <a href="commands/CommandSource.html" title="dev.dubhe.brace.commands
 <h3>getPrivateChannel</h3>
 <div class="member-signature"><span class="annotations">@NotNull
 </span><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="base/TextChannel.html" title="dev.dubhe.brace.base中的接口">TextChannel</a></span>&nbsp;<span class="element-name">getPrivateChannel</span>()</div>
+<div class="block"><span class="descfrm-type-label">从接口复制的说明:&nbsp;<code><a href="base/User.html#getPrivateChannel()">User</a></code></span></div>
+<div class="block">获取私聊文字频道</div>
 <dl class="notes">
 <dt>指定者:</dt>
 <dd><code><a href="base/User.html#getPrivateChannel()">getPrivateChannel</a></code>&nbsp;在接口中&nbsp;<code><a href="base/User.html" title="dev.dubhe.brace.base中的接口">User</a></code></dd>
+<dt>返回:</dt>
+<dd>私聊文字频道</dd>
 </dl>
 </section>
 </li>
@@ -260,11 +274,15 @@ implements <a href="commands/CommandSource.html" title="dev.dubhe.brace.commands
 <section class="detail" id="sendMessage(dev.dubhe.brace.utils.chat.Component)">
 <h3>sendMessage</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendMessage</span><wbr><span class="parameters">(<a href="utils/chat/Component.html" title="dev.dubhe.brace.utils.chat中的接口">Component</a>&nbsp;msg)</span></div>
+<div class="block"><span class="descfrm-type-label">从接口复制的说明:&nbsp;<code><a href="base/User.html#sendMessage(dev.dubhe.brace.utils.chat.Component)">User</a></code></span></div>
+<div class="block">发送消息</div>
 <dl class="notes">
 <dt>指定者:</dt>
 <dd><code><a href="commands/CommandSource.html#sendMessage(dev.dubhe.brace.utils.chat.Component)">sendMessage</a></code>&nbsp;在接口中&nbsp;<code><a href="commands/CommandSource.html" title="dev.dubhe.brace.commands中的接口">CommandSource</a></code></dd>
 <dt>指定者:</dt>
 <dd><code><a href="base/User.html#sendMessage(dev.dubhe.brace.utils.chat.Component)">sendMessage</a></code>&nbsp;在接口中&nbsp;<code><a href="base/User.html" title="dev.dubhe.brace.base中的接口">User</a></code></dd>
+<dt>参数:</dt>
+<dd><code>msg</code> - 要发送的消息</dd>
 </dl>
 </section>
 </li>

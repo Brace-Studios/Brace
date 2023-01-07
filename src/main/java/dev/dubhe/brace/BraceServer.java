@@ -27,7 +27,6 @@ public abstract class BraceServer {
         BraceServer.bot = bot;
         BraceServer.resourcesManager = new ResourcesManager();
         BraceServer.resourcesManager.load(new File(BraceServer.class.getProtectionDomain().getCodeSource().getLocation().getFile()));
-        BraceServer.resourcesManager.loadLanguage();
         BraceServer.LOGGER.info(new TranslatableComponent("brace.bot.start").getString());
         BraceServer.resourcesManager.load();
         BraceServer.eventManager = new EventManager();

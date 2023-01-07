@@ -1,0 +1,13 @@
+dev.dubhe.brace
+dev.dubhe.brace.base
+dev.dubhe.brace.commands
+dev.dubhe.brace.events
+dev.dubhe.brace.events.brace
+dev.dubhe.brace.events.guild
+dev.dubhe.brace.events.message
+dev.dubhe.brace.plugins
+dev.dubhe.brace.resources
+dev.dubhe.brace.utils
+dev.dubhe.brace.utils.chat
+dev.dubhe.brace.utils.image
+dev.dubhe.brace.utils.tools

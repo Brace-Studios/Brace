@@ -1,4 +1,4 @@
-# [白泽](/docs/index.md) | Brace
+# [白泽](/mddocs/index.md) | Brace
 
 * A Universal Chat Bot API
 

@@ -1,20 +1,20 @@
 package dev.dubhe.brace.utils.image;
 
 public class Color {
-    private final byte r;
-    private final byte g;
-    private final byte b;
-    private final byte a;
+    private final int r;
+    private final int g;
+    private final int b;
+    private final int a;
 
-    public Color(byte[] color) {
-        this(color[0], color[1], color[2], color.length == 4 ? color[3] : (byte) 0xFF);
+    public Color(int[] color) {
+        this(color[0], color[1], color[2], color.length == 4 ? color[3] : 0xFF);
     }
 
-    public Color(byte r, byte g, byte b) {
-        this(r, g, b, (byte) 0xFF);
+    public Color(int r, int g, int b) {
+        this(r, g, b, 0xFF);
     }
 
-    public Color(byte r, byte g, byte b, byte a) {
+    public Color(int r, int g, int b, int a) {
         this.r = r;
         this.g = g;
         this.b = b;
@@ -25,29 +25,29 @@ public class Color {
         return new java.awt.Color(this.r, this.g, this.b, this.a);
     }
 
-    public Color parseColor(String color) {
+    public static Color parseColor(String color) {
         if (color.startsWith("#")) color = color.substring(1);
-        byte r = (byte) Integer.parseInt(color.substring(0, 2), 16);
-        byte g = (byte) Integer.parseInt(color.substring(2, 4), 16);
-        byte b = (byte) Integer.parseInt(color.substring(4, 6), 16);
-        byte a = (byte) 0xFF;
-        if (color.length() == 8) a = (byte) Integer.parseInt(color.substring(6, 8), 16);
+        int r = Integer.parseInt(color.substring(0, 2), 16);
+        int g = Integer.parseInt(color.substring(2, 4), 16);
+        int b = Integer.parseInt(color.substring(4, 6), 16);
+        int a = 0xFF;
+        if (color.length() == 8) a = Integer.parseInt(color.substring(6, 8), 16);
         return new Color(r, g, b, a);
     }
 
-    public byte getRed() {
+    public int getRed() {
         return r;
     }
 
-    public byte getGreen() {
+    public int getGreen() {
         return g;
     }
 
-    public byte getBlue() {
+    public int getBlue() {
         return b;
     }
 
-    public byte getAlpha() {
+    public int getAlpha() {
         return a;
     }
 

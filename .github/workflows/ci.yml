@@ -7,7 +7,6 @@ on:
       - src/**
       - build.gradle
       - gradle.properties
-      - settings.gradle
 
 jobs:
   build:

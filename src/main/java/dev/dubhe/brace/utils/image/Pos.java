@@ -14,4 +14,8 @@ public class Pos {
         this.x = x;
         this.y = y;
     }
+
+    public Pos move(int x, int y) {
+        return new Pos(this.x + x, this.y + y);
+    }
 }

@@ -1,10 +1,11 @@
 package dev.dubhe.brace.utils.image;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.Collection;
 import java.util.List;
 
 public class BraceImage {
@@ -42,7 +43,6 @@ public class BraceImage {
      * 图像缩放
      *
      * @param ratio 比例
-     *
      * @return 原BraceImage实例
      */
     public BraceImage resize(double ratio) {
@@ -55,7 +55,6 @@ public class BraceImage {
      *
      * @param width  宽
      * @param height 高
-     *
      * @return 原BraceImage实例
      */
     public BraceImage resize(int width, int height) {
@@ -67,13 +66,12 @@ public class BraceImage {
      * 图像裁切
      *
      * @param range 范围
-     *
      * @return 原BraceImage实例
      */
     public BraceImage crop(Range range) {
-        BufferedImage bf = new BufferedImage(range.x2 - range.x1, range.y2 - range.y1, image.getType());
+        BufferedImage bf = new BufferedImage(range.getWidth(), range.getHeight(), image.getType());
         Graphics2D g = bf.createGraphics();
-        g.drawImage(image, range.x1, range.y1, range.x2 - range.x1, range.y2 - range.y1, null);
+        g.drawImage(image, 0, 0, range.getWidth(), range.getHeight(), range.x1, range.y1, range.x2, range.y2, null);
         g.dispose();
         this.image = bf;
         return this;
@@ -84,7 +82,6 @@ public class BraceImage {
      *
      * @param image 图片
      * @param pos   坐标
-     *
      * @return 原BraceImage实例
      */
     public BraceImage paste(BraceImage image, Pos pos) {
@@ -102,7 +99,6 @@ public class BraceImage {
      * @param font  字体
      * @param color 颜色
      * @param align 对齐方式
-     *
      * @return 原BraceImage实例
      */
     public BraceImage text(String text, Pos pos, Font font, Color color, TextAlign align) {
@@ -139,7 +135,6 @@ public class BraceImage {
      * @param pos       拉伸的部分
      * @param length    拉伸的目标长/宽度
      * @param direction 拉伸方向，WIDTH:横向, HEIGHT: 竖向
-     *
      * @return 原BraceImage实例
      */
     public BraceImage stretch(Pos pos, int length, StretchDirection direction) {
@@ -152,7 +147,6 @@ public class BraceImage {
      * @param range 范围
      * @param color 颜色
      * @param width 宽度
-     *
      * @return 原BraceImage实例
      */
     public BraceImage drawRectangle(Range range, Color color, int width) {
@@ -165,13 +159,28 @@ public class BraceImage {
     }
 
     /**
+     * 绘制实心矩形
+     *
+     * @param range 范围
+     * @param color 颜色
+     * @return 原BraceImage实例
+     */
+    public BraceImage fillRectangle(Range range, Color color) {
+        Graphics2D g = image.createGraphics();
+        g.setColor(color.toAwtColor());
+        g.setStroke(new BasicStroke(0));
+        g.fillRect(range.x1, range.y1, range.getWidth(), range.getHeight());
+        g.dispose();
+        return this;
+    }
+
+    /**
      * 绘制圆角矩形
      *
      * @param range  圆角矩形的范围
      * @param radius 半径
      * @param color  颜色
      * @param width  宽度
-     *
      * @return 原BraceImage实例
      */
     public BraceImage drawRoundedRectangle(Range range, int radius, Color color, int width) {
@@ -184,54 +193,102 @@ public class BraceImage {
     }
 
     /**
+     * 绘制实心圆角矩形
+     *
+     * @param range  圆角矩形的范围
+     * @param radius 半径
+     * @param color  颜色
+     * @return 原BraceImage实例
+     */
+    public BraceImage fillRoundedRectangle(Range range, int radius, Color color) {
+        Graphics2D g = image.createGraphics();
+        g.setColor(color.toAwtColor());
+        g.setStroke(new BasicStroke(0));
+        g.fillRoundRect(range.x1, range.y1, range.getWidth(), range.getHeight(), radius, radius);
+        g.dispose();
+        return this;
+    }
+
+    /**
      * 选择最多4个角绘制圆角矩形
      *
      * @param range  圆角矩形的范围
-     * @param r      半径
+     * @param radius 半径
      * @param color  颜色
      * @param width  宽度
      * @param angles 角列表
-     *
      * @return 原BraceImage实例
      */
-    public BraceImage drawRoundedRectangle2(Range range, int r, Color color, int width, Collection<Angles> angles) {
-        if (angles.isEmpty()) {
-            drawRectangle(range, color, width);
-            return this;
-        }
-        if (angles.containsAll(List.of(Angles.values()))) {
-            drawRoundedRectangle(range, r, color, width);
-            return this;
-        }
-        int x = range.x1, y = range.y1, w = range.getWidth(), h = range.getHeight();
-        this.drawLine(new Pos(x + r, y), new Pos(x + w - r, y), color, width);
-        this.drawLine(new Pos(x + w, y + r), new Pos(x + w, y + h - r), color, width);
-        this.drawLine(new Pos(x + r, y + h), new Pos(x + w - r, y + h), color, width);
-        this.drawLine(new Pos(x, y + r), new Pos(x, y + h - r), color, width);
-        if (angles.contains(Angles.TOP_LEFT))
-            this.drawRing(r * 2, new Pos(x, y), width, 0.25, color, 90);
-        else {
-            this.drawLine(new Pos(x, y), new Pos(x + r, y), color, width);
-            this.drawLine(new Pos(x, y), new Pos(x, y + r), color, width);
-        }
-        if (angles.contains(Angles.BOTTOM_LEFT))
-            this.drawRing(r * 2, new Pos(x, y + h - 2 * r), width, 0.25, color, 180);
-        else {
-            this.drawLine(new Pos(x, y + h), new Pos(x, y + h - r), color, width);
-            this.drawLine(new Pos(x, y + h), new Pos(x + r, y + h), color, width);
-        }
-        if (angles.contains(Angles.BOTTOM_RIGHT))
-            this.drawRing(r * 2, new Pos(x + w - 2 * r, y + h - 2 * r), width, 0.25, color, 270);
-        else {
-            this.drawLine(new Pos(x + w, y + h), new Pos(x + w - r, y + h), color, width);
-            this.drawLine(new Pos(x + w, y + h), new Pos(x + w, y + h - r), color, width);
-        }
-        if (angles.contains(Angles.TOP_RIGHT))
-            this.drawRing(r * 2, new Pos(x + w - 2 * r, y), width, 0.25, color, 0);
-        else {
-            this.drawLine(new Pos(x + w, y), new Pos(x + w - r, y), color, width);
-            this.drawLine(new Pos(x + w, y), new Pos(x + w, y + r), color, width);
-        }
+    public BraceImage drawRoundedRectangle2(Range range, int radius, Color color, int width, Angles... angles) {
+        int roundRectWidth = range.getWidth() + width / 2;
+        int roundRectHeight = range.getHeight() + width / 2;
+        Range rectRange = new Range(width / 2, width / 2, range.getWidth(), range.getHeight());
+        BraceImage roundRect = new BraceImage(roundRectWidth, roundRectHeight, new Color(0, 0, 0, 0), BraceImage.Mode.RGBA);
+        roundRect.drawRoundedRectangle(rectRange, radius * 2, color, width);
+        BraceImage rectangle = new BraceImage(roundRectWidth, roundRectHeight, new Color(0, 0, 0, 0), BraceImage.Mode.RGBA);
+        rectangle.drawRectangle(rectRange, color, width);
+
+        return drawByAngle(range, width, roundRectWidth, roundRectHeight, roundRect, rectangle, angles);
+    }
+
+    /**
+     * 选择最多4个角绘制实心圆角矩形
+     *
+     * @param range  圆角矩形的范围
+     * @param radius 半径
+     * @param color  颜色
+     * @param angles 角列表
+     * @return 原BraceImage实例
+     */
+    public BraceImage fillRoundedRectangle2(Range range, int radius, Color color, Angles... angles) {
+        int roundRectWidth = range.getWidth();
+        int roundRectHeight = range.getHeight();
+        Range rectRange = new Range(0, 0, range.getWidth(), range.getHeight());
+        BraceImage roundRect = new BraceImage(roundRectWidth, roundRectHeight, new Color(0, 0, 0, 0), BraceImage.Mode.RGBA);
+        roundRect.fillRoundedRectangle(rectRange, radius * 2, color);
+        BraceImage rectangle = new BraceImage(roundRectWidth, roundRectHeight, new Color(0, 0, 0, 0), BraceImage.Mode.RGBA);
+        rectangle.fillRectangle(rectRange, color);
+
+        return drawByAngle(range, 0, roundRectWidth, roundRectHeight, roundRect, rectangle, angles);
+    }
+
+    @NotNull
+    private BraceImage drawByAngle(Range range, int width, int roundRectWidth, int roundRectHeight, BraceImage image1, BraceImage image2, Angles[] angles) {
+        Pos topLeftPoint, topRightPoint, bottomLeftPoint, bottomRightPoint, centerPoint;
+        topLeftPoint = new Pos(0, 0);
+        topRightPoint = new Pos(roundRectWidth, 0);
+        bottomLeftPoint = new Pos(0, roundRectHeight);
+        bottomRightPoint = new Pos(roundRectWidth, roundRectHeight);
+        centerPoint = new Pos(roundRectWidth / 2, roundRectHeight / 2);
+
+        Range topLeftRange, topRightRange, bottomLeftRange, bottomRightRange;
+        topLeftRange = new Range(topLeftPoint, centerPoint);
+        topRightRange = new Range(topRightPoint, centerPoint);
+        bottomLeftRange = new Range(bottomLeftPoint, centerPoint);
+        bottomRightRange = new Range(bottomRightPoint, centerPoint);
+
+        List<Angles> anglesList = List.of(angles);
+        BraceImage topLeft, topRight, bottomLeft, bottomRight;
+        if (anglesList.contains(Angles.TOP_LEFT)) topLeft = image1.copy().crop(topLeftRange);
+        else topLeft = image2.copy().crop(topLeftRange);
+        if (anglesList.contains(Angles.TOP_RIGHT)) topRight = image1.copy().crop(topRightRange);
+        else topRight = image2.copy().crop(topRightRange);
+        if (anglesList.contains(Angles.BOTTOM_LEFT)) bottomLeft = image1.copy().crop(bottomLeftRange);
+        else bottomLeft = image2.copy().crop(bottomLeftRange);
+        if (anglesList.contains(Angles.BOTTOM_RIGHT)) bottomRight = image1.copy().crop(bottomRightRange);
+        else bottomRight = image2.copy().crop(bottomRightRange);
+
+        Pos topLeftPastePoint, topRightPastePoint, bottomLeftPastePoint, bottomRightPastePoint;
+        topLeftPastePoint = new Pos(range.x1 - width / 2, range.y1 - width / 2);
+        topRightPastePoint = topLeftPastePoint.move(topLeftRange.getWidth(), 0);
+        bottomLeftPastePoint = topLeftPastePoint.move(0, topLeftRange.getHeight());
+        bottomRightPastePoint = bottomLeftPastePoint.move(topLeftRange.getWidth(), 0);
+
+        this.paste(topLeft, topLeftPastePoint);
+        this.paste(topRight, topRightPastePoint);
+        this.paste(bottomLeft, bottomLeftPastePoint);
+        this.paste(bottomRight, bottomRightPastePoint);
+
         return this;
     }
 
@@ -242,7 +299,6 @@ public class BraceImage {
      * @param pos2  终点
      * @param color 颜色
      * @param width 宽度
-     *
      * @return 原BraceImage实例
      */
     public BraceImage drawLine(Pos pos1, Pos pos2, Color color, int width) {
@@ -263,7 +319,6 @@ public class BraceImage {
      * @param percent    百分比
      * @param color      颜色
      * @param startAngle 起始角度
-     *
      * @return 原BraceImage实例
      */
     public BraceImage drawRing(int size, Pos pos, int width, double percent, Color color, int startAngle) {
@@ -298,7 +353,6 @@ public class BraceImage {
      * 将图片变为圆角
      *
      * @param radius 半径
-     *
      * @return 原BraceImage实例
      */
     public BraceImage toRoundedCorner(int radius) {
@@ -327,7 +381,6 @@ public class BraceImage {
      * @param width 边框宽度
      * @param color 边框颜色
      * @param shape 边框形状
-     *
      * @return 原BraceImage实例
      */
     public BraceImage addBorder(int width, Color color, Shape shape) {

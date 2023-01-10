@@ -7,6 +7,11 @@
 * [下载实现](/docs/use/implement.md)
 * [下载插件](/docs/use/plugin.md)
 
+## 交流
+
+* [KOOK【DcEDiE】](https://kook.top/DcEDiE)
+* [QQ【197985735】](https://jq.qq.com/?_wv=1027&k=Ptlhnig3)
+
 ## 开发插件
 
 * [快速入门](/docs/plugin/quick_start.md)

@@ -41,4 +41,20 @@ public class Range {
     public int getHeight() {
         return this.y2 - this.y1;
     }
+
+    public Pos getTopLeftPos() {
+        return new Pos(x1, y1);
+    }
+
+    public Pos getTopRightPos() {
+        return new Pos(x2, y1);
+    }
+
+    public Pos getBottomLeftPos() {
+        return new Pos(x1, y2);
+    }
+
+    public Pos getBottomRightPos() {
+        return new Pos(x2, y2);
+    }
 }

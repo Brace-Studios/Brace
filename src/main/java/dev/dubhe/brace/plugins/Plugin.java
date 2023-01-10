@@ -22,22 +22,22 @@ public abstract class Plugin {
 
     public abstract void onUninstall();
 
-    protected void load(@Nonnull PluginMeta pluginInfo, @Nullable JsonObject defaultConfig) {
+    protected final void load(@Nonnull PluginMeta pluginInfo, @Nullable JsonObject defaultConfig) {
         this.pluginInfo = pluginInfo;
         this.defaultConfig = defaultConfig;
     }
 
-    public Path getDefaultConfigDir() {
+    public final Path getDefaultConfigDir() {
         Path configDir = BraceServer.ROOT.resolve("configs").resolve(this.pluginInfo.id);
         if (!configDir.toFile().isDirectory()) configDir.toFile().mkdirs();
         return configDir;
     }
 
-    public File getDefaultConfigFile() {
+    public final File getDefaultConfigFile() {
         return this.getDefaultConfigDir().resolve("config.json").toFile();
     }
 
-    public boolean createDefaultConfig() {
+    public final boolean createDefaultConfig() {
         if (this.defaultConfig != null) {
             File configFile = this.getDefaultConfigDir().resolve("config.json").toFile();
             try (FileWriter writer = new FileWriter(configFile)) {
@@ -50,7 +50,7 @@ public abstract class Plugin {
         return false;
     }
 
-    public static class PluginMeta {
+    public final static class PluginMeta {
         public String id; // 插件ID
         public String name; // 插件名称
         public String version; // 插件版本
